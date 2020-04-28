@@ -1,0 +1,11 @@
+<form [formGroup]="secondFormGroup">
+  <mat-form-field>
+    <mat-label>Pseudo</mat-label>
+    <input matInput formControlName="secondCtrl" placeholder="Pseudo"
+           required>
+  </mat-form-field>
+  <div>
+    <button mat-button matStepperPrevious>Retour</button>
+    <button mat-button matStepperNext>Suivant</button>
+  </div>
+</form>

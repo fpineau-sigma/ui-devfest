@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-visualisation-main',
@@ -6,9 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class VisualisationMainComponent implements OnInit {
 
-  constructor() { }
+  firstFormGroup: FormGroup;
+  secondFormGroup: FormGroup;
 
-  ngOnInit(): void {
+  constructor(private formBuilder: FormBuilder) {}
+
+  ngOnInit() {
+    this.firstFormGroup = this.formBuilder.group({
+      firstCtrl: ['', Validators.required]
+    });
   }
 
 }

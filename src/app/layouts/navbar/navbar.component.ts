@@ -7,27 +7,21 @@ import {MatSidenav} from '@angular/material/sidenav';
   styleUrls: ['navbar.scss']
 })
 export class NavbarComponent implements OnInit {
-  opened = true;
+  opened = false;
   @ViewChild('sidenav', {static: true}) sidenav: MatSidenav;
 
   ngOnInit() {
-    if (window.innerWidth < 768) {
-      this.sidenav.fixedTopGap = 55;
-      this.opened = false;
-    } else {
-      this.sidenav.fixedTopGap = 55;
-      this.opened = true;
-    }
+    this.sidenav.fixedTopGap = 55;
   }
 
   @HostListener('window:resize', ['$event'])
   onResize(event) {
     if (event.target.innerWidth < 768) {
-      this.sidenav.fixedTopGap = 55;
       this.opened = false;
     } else {
-      this.sidenav.fixedTopGap = 55;
-      this.opened = true;
+      if (true === this.opened) {
+        this.opened = true;
+      }
     }
   }
 

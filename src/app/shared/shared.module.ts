@@ -8,6 +8,8 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import {WebcamModule} from 'ngx-webcam';
 import {MatStepperModule} from '@angular/material/stepper';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatButtonModule} from '@angular/material/button';
+import {MatInputModule} from '@angular/material/input';
 
 
 
@@ -22,7 +24,9 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     MatGridListModule,
     WebcamModule,
     MatStepperModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatButtonModule,
+    MatInputModule
   ],
   exports: [
     CommonModule,
@@ -33,7 +37,9 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     MatGridListModule,
     WebcamModule,
     MatStepperModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatButtonModule,
+    MatInputModule
   ],
 })
 export class SharedModule { }
