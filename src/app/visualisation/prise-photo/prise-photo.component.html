@@ -1,2 +1,7 @@
-<webcam [height]="500" [width]="500"></webcam>
-<button mat-button matStepperNext>Suivant</button>
+<div align="center">
+  <webcam [height]="500" [width]="500"  [trigger]="triggerObservable" [videoOptions]="videoOptions" [imageQuality]="1"
+          (imageCapture)="handleImage($event)"></webcam>
+</div>
+<div align="center">
+  <button mat-button (click)="triggerSnapshot();">Capturer</button>
+</div>

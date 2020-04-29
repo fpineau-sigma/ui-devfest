@@ -10,6 +10,7 @@ import {MatStepperModule} from '@angular/material/stepper';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatButtonModule} from '@angular/material/button';
 import {MatInputModule} from '@angular/material/input';
+import {MatDialog, MatDialogModule} from '@angular/material/dialog';
 
 
 
@@ -26,7 +27,8 @@ import {MatInputModule} from '@angular/material/input';
     MatStepperModule,
     MatFormFieldModule,
     MatButtonModule,
-    MatInputModule
+    MatInputModule,
+    MatDialogModule
   ],
   exports: [
     CommonModule,
@@ -39,7 +41,8 @@ import {MatInputModule} from '@angular/material/input';
     MatStepperModule,
     MatFormFieldModule,
     MatButtonModule,
-    MatInputModule
+    MatInputModule,
+    MatDialogModule
   ],
 })
 export class SharedModule { }

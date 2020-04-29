@@ -8,10 +8,11 @@ import { SelectionPhotoComponent } from './selection-photo/selection-photo.compo
 import { SelectionPseudoComponent } from './selection-pseudo/selection-pseudo.component';
 import { PrisePhotoComponent } from './prise-photo/prise-photo.component';
 import { ImpressionPhotoComponent } from './impression-photo/impression-photo.component';
+import { PrisePhotoValidationComponent } from './prise-photo/prise-photo-validation/prise-photo-validation.component';
 
 
 @NgModule({
-  declarations: [VisualisationMainComponent, SelectionPhotoComponent, SelectionPseudoComponent, PrisePhotoComponent, ImpressionPhotoComponent],
+  declarations: [VisualisationMainComponent, SelectionPhotoComponent, SelectionPseudoComponent, PrisePhotoComponent, ImpressionPhotoComponent, PrisePhotoValidationComponent],
   exports: [
     VisualisationMainComponent
   ],
