@@ -4,6 +4,7 @@ import {WebcamImage} from 'ngx-webcam';
 import {MatDialog} from '@angular/material/dialog';
 import {PrisePhotoValidationComponent} from './prise-photo-validation/prise-photo-validation.component';
 import {MatStepper} from '@angular/material/stepper';
+import {Image} from '../../core/model/image.model';
 
 @Component({
   selector: 'app-prise-photo',
@@ -12,11 +13,12 @@ import {MatStepper} from '@angular/material/stepper';
 export class PrisePhotoComponent implements OnInit {
 
   @Input() stepper: MatStepper;
+  @Input() image: Image;
+
   public facingMode = 'environment';
   // webcam snapshot trigger
   private trigger: Subject<void> = new Subject<void>();
   // latest snapshot
-  public webcamImage: WebcamImage = null;
 
 
   constructor(public dialog: MatDialog) { }
@@ -38,7 +40,7 @@ export class PrisePhotoComponent implements OnInit {
   }
 
   public handleImage(webcamImage: WebcamImage): void {
-    this.webcamImage = webcamImage;
+    this.image.webcamImage = webcamImage;
   }
 
   public triggerSnapshot(): void {
@@ -48,7 +50,7 @@ export class PrisePhotoComponent implements OnInit {
     const dialogRef = this.dialog.open(PrisePhotoValidationComponent, {
       height: '87%',
       width: '60%',
-      data: {webcamImage: this.webcamImage}
+      data: {webcamImage: this.image.webcamImage}
     });
     dialogRef.afterClosed().subscribe(result => {
       if (true === result){

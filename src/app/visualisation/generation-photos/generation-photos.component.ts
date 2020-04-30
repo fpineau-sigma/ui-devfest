@@ -1,12 +1,11 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {WebcamImage} from 'ngx-webcam';
 import {Image} from '../../core/model/image.model';
 
 @Component({
-  selector: 'app-selection-photo',
-  templateUrl: './selection-photo.component.html'
+  selector: 'app-generation-photos',
+  templateUrl: './generation-photos.component.html'
 })
-export class SelectionPhotoComponent implements OnInit {
+export class GenerationPhotosComponent implements OnInit {
 
   @Input() image: Image;
 

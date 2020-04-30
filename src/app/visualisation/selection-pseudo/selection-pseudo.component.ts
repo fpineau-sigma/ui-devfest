@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {Image} from '../../core/model/image.model';
 
 @Component({
   selector: 'app-selection-pseudo',
@@ -8,7 +9,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 export class SelectionPseudoComponent implements OnInit {
 
   public form: FormGroup;
-  public pseudo: string;
+  @Input() public image: Image;
 
   constructor(private formBuilder: FormBuilder) {
     this.form = this.formBuilder.group({
@@ -19,7 +20,7 @@ export class SelectionPseudoComponent implements OnInit {
   ngOnInit() {
     this.form.get('pseudoCtrl').valueChanges
     .subscribe(val => {
-      this.pseudo = val;
+      this.image.pseudo = val;
     });
   }
 }

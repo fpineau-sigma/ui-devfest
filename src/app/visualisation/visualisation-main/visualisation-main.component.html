@@ -1,16 +1,20 @@
 <mat-horizontal-stepper linear="true" #stepper>
   <mat-step>
       <ng-template matStepLabel>Prise de la photo</ng-template>
-      <app-prise-photo [stepper]="stepper"></app-prise-photo>
+      <app-prise-photo [stepper]="stepper" [image]="image"></app-prise-photo>
   </mat-step>
   <mat-step [stepControl]="stepPseudo">
     <ng-template matStepLabel>Entrez votre pseudo</ng-template>
-    <app-selection-pseudo></app-selection-pseudo>
+    <app-selection-pseudo [image]="image"></app-selection-pseudo>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Generation des photos</ng-template>
+    <app-generation-photos [image]="image"></app-generation-photos>
   </mat-step>
   <mat-step>
     <ng-template matStepLabel>Selection de la photo</ng-template>
-    <app-selection-photo></app-selection-photo>
-  </mat-step >
+    <app-selection-photo [image]="image"></app-selection-photo>
+  </mat-step>
   <mat-step>
     <ng-template matStepLabel>Impression de la photo</ng-template>
     <app-impression-photo></app-impression-photo>
