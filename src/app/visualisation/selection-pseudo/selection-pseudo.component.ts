@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup} from '@angular/forms';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-selection-pseudo',
@@ -7,14 +7,19 @@ import {FormBuilder, FormGroup} from '@angular/forms';
 })
 export class SelectionPseudoComponent implements OnInit {
 
-  @Input() secondFormGroup: FormGroup;
+  public form: FormGroup;
+  public pseudo: string;
 
-  constructor(private formBuilder: FormBuilder) { }
-
-  ngOnInit(): void {
-    this.secondFormGroup = this.formBuilder.group({
-      secondCtrl: ''
+  constructor(private formBuilder: FormBuilder) {
+    this.form = this.formBuilder.group({
+      pseudoCtrl: ['', Validators.required]
     });
   }
 
+  ngOnInit() {
+    this.form.get('pseudoCtrl').valueChanges
+    .subscribe(val => {
+      this.pseudo = val;
+    });
+  }
 }

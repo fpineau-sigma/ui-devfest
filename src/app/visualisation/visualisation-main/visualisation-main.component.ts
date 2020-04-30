@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {SelectionPseudoComponent} from '../selection-pseudo/selection-pseudo.component';
 
 @Component({
   selector: 'app-visualisation-main',
@@ -7,15 +7,14 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 })
 export class VisualisationMainComponent implements OnInit {
 
-  firstFormGroup: FormGroup;
-  secondFormGroup: FormGroup;
+  @ViewChild(SelectionPseudoComponent) selectionPseudoComponent: SelectionPseudoComponent;
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor() {}
 
   ngOnInit() {
-    this.firstFormGroup = this.formBuilder.group({
-      firstCtrl: ['', Validators.required]
-    });
   }
 
+  get stepPseudo() {
+    return this.selectionPseudoComponent ? this.selectionPseudoComponent.form : null;
+  }
 }
