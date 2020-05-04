@@ -1,12 +1,11 @@
-import { HTTP_INTERCEPTORS } from "@angular/common/http";
-import { NgModule } from "@angular/core";
-import {
-  ServerModule,
-  ServerTransferStateModule
-} from "@angular/platform-server";
-import { AppComponent } from "./app.component";
-import { AppModule } from "./app.module";
-import { UniversalInterceptorService } from "./modules/shared/interceptors/universal-interceptor.service";
+
+
+import {UniversalInterceptorService} from './shared/interceptors/universal-interceptor.service';
+import {AppModule} from './app.module';
+import {ServerModule, ServerTransferStateModule} from '@angular/platform-server';
+import {AppComponent} from './app.component';
+import {NgModule} from '@angular/core';
+import {HTTP_INTERCEPTORS} from '@angular/common/http';
 
 @NgModule({
   imports: [

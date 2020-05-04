@@ -19,7 +19,6 @@ export class GenerationPhotosComponent implements OnInit {
   ngOnInit(): void {
     this.stepper.selectionChange.subscribe((event: any) => {
       if (event.selectedStep === this.step){
-        console.log(this.image);
         this.imagesService.generer(this.image).subscribe(value => {
           console.log(value);
         });
