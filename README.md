@@ -1,27 +1,48 @@
-# UiDevfest
+# Nest & Angular Universal Starter
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.2.
+A minimal [**Nest**](https://github.com/nestjs/nest) and Angular starter for Universal using the
+[Angular CLI](https://github.com/angular/angular-cli). If you're looking for the Angular Universal repo go to
+[angular/universal](https://github.com/angular/universal).
 
-## Development server
+---
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+<p align="center">
+  <a href="https://trilon.io" target="_blank">
+        <img width="500" height="auto" src="https://trilon.io/trilon-logo-clear.png" alt="Trilon.io - Angular Universal, NestJS, JavaScript Application Consulting Development and Training">
+  </a>
+</p>
 
-## Code scaffolding
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+<h3 align="center"> Made with :heart: by <a href="https://trilon.io">Trilon.io</a></h3>
 
-## Build
+---
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+## Getting Started
 
-## Running unit tests
+This demo is built following the [Angular-CLI Wiki guide](https://github.com/angular/angular-cli/wiki/stories-universal-rendering).
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+### Installation
 
-## Running end-to-end tests
+- `npm i`
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+### Development (Client-side only rendering)
 
-## Further help
+- `npm start` which will run `ng serve`.
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+### Development (Server-side rendering)
+
+- `npm run dev:ssr`.
+
+### Production
+
+\*`npm run build:ssr && npm run serve:ssr`
+
+- Compiles your application and spins up a Nest server to serve your Universal application on `http://localhost:4000`.
+
+\*`npm run prerender`
+
+- Compiles your application and prerenders your applications files
+
+# License
+
+[![MIT License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat)](/LICENSE)

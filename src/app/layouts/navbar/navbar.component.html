@@ -1,8 +1,6 @@
 <mat-sidenav-container>
   <!-- Sidenav -->
-  <mat-sidenav #sidenav [mode]="isBiggerScreen() ? 'over' : 'side'" [(opened)]="opened"
-               [fixedInViewport]="true"
-               [fixedTopGap]>
+  <mat-sidenav #sidenav [(opened)]="opened" [fixedInViewport]="true" [fixedTopGap]>
     <mat-nav-list>
       <a mat-list-item routerLink="/visualisation" (click)="sidenav.toggle()">
         <mat-icon>dashboard</mat-icon>

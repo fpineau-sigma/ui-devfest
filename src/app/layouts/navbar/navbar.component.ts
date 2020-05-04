@@ -24,14 +24,4 @@ export class NavbarComponent implements OnInit {
       }
     }
   }
-
-  isBiggerScreen() {
-    const width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
-    if (width < 768) {
-      return true;
-    } else {
-      return false;
-    }
-  }
-
 }

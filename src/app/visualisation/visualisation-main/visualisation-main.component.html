@@ -7,9 +7,9 @@
     <ng-template matStepLabel>Entrez votre pseudo</ng-template>
     <app-selection-pseudo [image]="image"></app-selection-pseudo>
   </mat-step>
-  <mat-step>
+  <mat-step #genererPhotos>
     <ng-template matStepLabel>Generation des photos</ng-template>
-    <app-generation-photos [image]="image"></app-generation-photos>
+    <app-generation-photos [step]="genererPhotos" [stepper]="stepper" [image]="image"></app-generation-photos>
   </mat-step>
   <mat-step>
     <ng-template matStepLabel>Selection de la photo</ng-template>
