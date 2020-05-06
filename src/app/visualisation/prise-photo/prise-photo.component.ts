@@ -40,7 +40,7 @@ export class PrisePhotoComponent implements OnInit {
   }
 
   public handleImage(webcamImage: WebcamImage): void {
-    this.image.webcamImage = webcamImage;
+    this.image.imageData = webcamImage.imageAsDataUrl;
   }
 
   public triggerSnapshot(): void {
@@ -50,7 +50,7 @@ export class PrisePhotoComponent implements OnInit {
     const dialogRef = this.dialog.open(PrisePhotoValidationComponent, {
       height: '87%',
       width: '60%',
-      data: {webcamImage: this.image.webcamImage}
+      data: {imageData: this.image.imageData}
     });
     dialogRef.afterClosed().subscribe(result => {
       if (true === result){
