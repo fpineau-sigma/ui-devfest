@@ -1,5 +1,6 @@
-<p>test : {{image?.pseudo}}</p>
-<img [src]="image?.imageData" alt="Smiley face" />
+<div *ngIf="imageSet">
+  <svg-icon name="svg"></svg-icon>
+</div>
 <div>
   <button mat-button matStepperPrevious>Retour</button>
   <button mat-button matStepperNext>Suivant</button>

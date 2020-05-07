@@ -1,18 +1,41 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { Observable } from 'rxjs';
 import {Image} from '../model/image.model';
 import {imageToFile} from '../../shared/utils/image.util';
 
-const url = 'api/images/test';
+const url = 'api/images';
 
 @Injectable({ providedIn: 'root' })
 export class ImagesService {
   constructor(private http: HttpClient) {}
 
-  generer(image: Image): Observable<any> {
+  /**
+   * Fonction de génération de l'image prise avec la caméra
+   * @param image Image à générer pour impression
+   */
+  generer(image: Image): Observable<string> {
     const formData = new FormData();
     formData.append('file', imageToFile(image));
-    return this.http.post<Image>(`${url}`, formData);
+    return this.http.post<string>(`${url}/test`, formData);
+  }
+
+  /**
+   * Fonction permettant la récupération des images générées
+   * @param image Image contenant les informations permettant la récupération des images générées par le back
+   */
+  recupererImagesGenerer(image:Image) : Observable<any>{
+    const headers = new HttpHeaders().set('Content-Type', 'text/plain; charset=utf-8');
+    return this.http.get<any>(`${url}/generer/${image.pseudo}`, { headers, responseType: 'text' as 'json'});
+  }
+
+  /**
+   * Fonction permettant l'impression de l'image selectionnée
+   * @param image Image contenant l'image selectionnée à imprimer
+   */
+  impressionImage(image: Image): Observable<Image>{
+    const formData = new FormData();
+    formData.append('file', imageToFile(image));
+    return this.http.post<Image>(`${url}/imprimer`, formData);
   }
 }

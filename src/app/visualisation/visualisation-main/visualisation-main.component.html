@@ -11,13 +11,13 @@
     <ng-template matStepLabel>Generation des photos</ng-template>
     <app-generation-photos [step]="genererPhotos" [stepper]="stepper" [image]="image"></app-generation-photos>
   </mat-step>
-  <mat-step>
+  <mat-step #selectionPhotos>
     <ng-template matStepLabel>Selection de la photo</ng-template>
-    <app-selection-photo [image]="image"></app-selection-photo>
+    <app-selection-photo [step]="selectionPhotos" [stepper]="stepper" [image]="image"></app-selection-photo>
   </mat-step>
-  <mat-step>
+  <mat-step #impressionPhotos>
     <ng-template matStepLabel>Impression de la photo</ng-template>
-    <app-impression-photo></app-impression-photo>
+    <app-impression-photo [step]="impressionPhotos" [stepper]="stepper" [image]="image"></app-impression-photo>
   </mat-step>
 </mat-horizontal-stepper>
 

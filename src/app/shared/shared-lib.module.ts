@@ -13,6 +13,8 @@ import {MatInputModule} from '@angular/material/input';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {UniversalInterceptorService} from './interceptors/universal-interceptor.service';
+import {InlineSVGModule} from 'ng-inline-svg';
+import {AngularSvgIconModule} from 'angular-svg-icon';
 
 
 @NgModule({
@@ -30,7 +32,8 @@ import {UniversalInterceptorService} from './interceptors/universal-interceptor.
     MatButtonModule,
     MatInputModule,
     MatDialogModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    AngularSvgIconModule.forRoot()
   ],
   exports: [
     CommonModule,
@@ -45,7 +48,8 @@ import {UniversalInterceptorService} from './interceptors/universal-interceptor.
     MatButtonModule,
     MatInputModule,
     MatDialogModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    AngularSvgIconModule
   ],
   providers: [UniversalInterceptorService],
 })

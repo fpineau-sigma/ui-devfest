@@ -1,11 +1,17 @@
-import {Controller, Post, UploadedFile, UseInterceptors} from '@nestjs/common';
+import {Controller, Get, Param, Post, Res, UploadedFile, UseInterceptors} from '@nestjs/common';
 import {FileInterceptor} from '@nestjs/platform-express';
 import {diskStorage} from 'multer';
-import {extname} from 'path';
+import {Image} from '../../src/app/core/model/image.model';
+import * as fs from 'fs';
 
 @Controller('api/images')
 export class ImagesController {
 
+  /**
+   * Géneration du fichier pour impression
+   * @param file fichier à transformer
+   * TODO : remplacer generer par transformer
+   */
   @Post()
   @UseInterceptors(FileInterceptor('file'))
   uploadImage(@UploadedFile() file): string {
@@ -19,17 +25,36 @@ export class ImagesController {
       storage: diskStorage({
         destination: './avatars',
         filename: (req, file, cb) => {
-          const randomName = Array(32).fill(null).map(() => (Math.round(Math.random() * 16)).toString(16)).join('');
-          return cb(null, `${randomName}${extname(file.originalname)}`);
+          return cb(null, `${file.originalname}`);
         }
       })
     }
     )
   )
-  uploadFile(
-    @UploadedFile() file,
-  ): string {
+  genererFichierPourImpression(@UploadedFile() file): string {
     console.log(file);
-    return 'ok';
+    return null;
+  }
+
+  /**
+   * Fonction qui permet l'ensemble des images générées dans un tableau
+   * @param pseudo Pseudo des images à récupérer
+   * TODO : Passer en paramètre l'uuid plutôt que le pseudo
+   * @param res permet de lire le fichier
+   */
+  @Get('/generer/:pseudo')
+  async recupererImagesGenerer(@Param('pseudo') pseudo: string, @Res() res): Promise<any> {
+    res.sendFile('chuck.svg', { root: 'avatars'});
+  }
+
+  /**
+   * Permet l'impression d'une image selectionnée
+   * @param file Fichier à imprimer
+   */
+  @Post('/imprimer')
+  @UseInterceptors(FileInterceptor('file'))
+  imprimerImage(@UploadedFile() file): string {
+    console.log(file);
+    return null;
   }
 }
