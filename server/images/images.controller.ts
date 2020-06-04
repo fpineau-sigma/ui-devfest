@@ -3,9 +3,15 @@ import {FileInterceptor} from '@nestjs/platform-express';
 import {diskStorage} from 'multer';
 import {Image} from '../../src/app/core/model/image.model';
 import * as fs from 'fs';
+import {ImagesService} from './images.service';
 
 @Controller('api/images')
 export class ImagesController {
+
+  constructor(
+    private readonly  imagesService : ImagesService
+  ){}
+
 
   /**
    * Géneration du fichier pour impression
@@ -33,6 +39,7 @@ export class ImagesController {
   )
   genererFichierPourImpression(@UploadedFile() file): string {
     console.log(file);
+    this.imagesService.rabbitEvent();
     return null;
   }
 

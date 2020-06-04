@@ -13,7 +13,6 @@ import {MatInputModule} from '@angular/material/input';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {UniversalInterceptorService} from './interceptors/universal-interceptor.service';
-import {InlineSVGModule} from 'ng-inline-svg';
 import {AngularSvgIconModule} from 'angular-svg-icon';
 
 
