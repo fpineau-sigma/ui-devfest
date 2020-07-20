@@ -4,17 +4,19 @@ import {RouterModule} from '@angular/router';
 import {visualisationRoutes} from './visualisation.route';
 import {SharedLibModule} from '../shared/shared-lib.module';
 import {ReactiveFormsModule} from '@angular/forms';
-import { SelectionPhotoComponent } from './selection-photo/selection-photo.component';
-import { SelectionPseudoComponent } from './selection-pseudo/selection-pseudo.component';
-import { PrisePhotoComponent } from './prise-photo/prise-photo.component';
-import { ImpressionPhotoComponent } from './impression-photo/impression-photo.component';
-import { PrisePhotoValidationComponent } from './prise-photo/prise-photo-validation/prise-photo-validation.component';
-import { GenerationPhotosComponent } from './generation-photos/generation-photos.component';
+
 import {ImagesService} from '../core/service/images.service';
+import {SelectionPhotoComponent} from './04_selection-photo/selection-photo.component';
+import {SelectionPseudoComponent} from './02_selection-pseudo/selection-pseudo.component';
+import {GenerationPhotosComponent} from './03_generation-photos/generation-photos.component';
+import {PrisePhotoComponent} from './01_prise-photo/prise-photo.component';
+import {ImpressionPhotoComponent} from './05_impression-photo/impression-photo.component';
+import {PrisePhotoValidationComponent} from './01_prise-photo/prise-photo-validation/prise-photo-validation.component';
 
 
 @NgModule({
-  declarations: [VisualisationMainComponent, SelectionPhotoComponent, SelectionPseudoComponent, PrisePhotoComponent, ImpressionPhotoComponent, PrisePhotoValidationComponent, GenerationPhotosComponent],
+  declarations: [VisualisationMainComponent, SelectionPhotoComponent, SelectionPseudoComponent,
+    PrisePhotoComponent, ImpressionPhotoComponent, PrisePhotoValidationComponent, GenerationPhotosComponent],
   exports: [
     VisualisationMainComponent
   ],

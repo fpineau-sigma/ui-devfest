@@ -5,6 +5,7 @@ import {MatDialog} from '@angular/material/dialog';
 import {PrisePhotoValidationComponent} from './prise-photo-validation/prise-photo-validation.component';
 import {MatStepper} from '@angular/material/stepper';
 import {Image} from '../../core/model/image.model';
+import {ImagesService} from '../../core/service/images.service';
 
 @Component({
   selector: 'app-prise-photo',
@@ -14,16 +15,21 @@ export class PrisePhotoComponent implements OnInit {
 
   @Input() stepper: MatStepper;
   @Input() image: Image;
+  private imageData : string;
 
   public facingMode = 'environment';
   // webcam snapshot trigger
   private trigger: Subject<void> = new Subject<void>();
   // latest snapshot
 
-
-  constructor(public dialog: MatDialog) { }
+  constructor(public dialog: MatDialog,
+              public imagesService: ImagesService) { }
 
   ngOnInit(): void {
+    this.imagesService.initialiserWorkflow().subscribe(value => {
+      // On met à jour l'id initilisé depuis la BDD
+      this.image._id = value._id;
+    });
   }
 
   public get videoOptions(): MediaTrackConstraints {
@@ -40,7 +46,7 @@ export class PrisePhotoComponent implements OnInit {
   }
 
   public handleImage(webcamImage: WebcamImage): void {
-    this.image.imageData = webcamImage.imageAsDataUrl;
+    this.imageData = webcamImage.imageAsDataUrl;
   }
 
   public triggerSnapshot(): void {
@@ -50,11 +56,13 @@ export class PrisePhotoComponent implements OnInit {
     const dialogRef = this.dialog.open(PrisePhotoValidationComponent, {
       height: '87%',
       width: '60%',
-      data: {imageData: this.image.imageData}
+      data: {imageData: this.imageData}
     });
     dialogRef.afterClosed().subscribe(result => {
       if (true === result){
-        this.stepper.next();
+        this.imagesService.generer(this.imageData, this.image._id).subscribe( () => {
+          this.stepper.next();
+        });
       }
     });
   }

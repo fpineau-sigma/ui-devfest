@@ -1,4 +1,5 @@
 export class Image {
+  public _id? : string;
   public pseudo?: string;
-  public imageData?: string;
+  public imageSelectionnee?: number;
 }

@@ -1,6 +1,6 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {SelectionPseudoComponent} from '../selection-pseudo/selection-pseudo.component';
 import {Image} from '../../core/model/image.model';
+import {SelectionPseudoComponent} from '../02_selection-pseudo/selection-pseudo.component';
 
 @Component({
   selector: 'app-visualisation-main',

@@ -1,6 +1,6 @@
 export class ImageDto {
   public pseudo: string;
-  public imageData: string;
-  public imagesGenerees : File[];
+  public _id: string;
   public imageSelectionnee : number;
+  public photoInitiale : File;
 }

@@ -1,9 +1,12 @@
-import {Controller, Get, Param, Post, Res, UploadedFile, UseInterceptors} from '@nestjs/common';
+import {Body, Controller, Get, Param, Post, Put, Res, UploadedFile, UseInterceptors} from '@nestjs/common';
 import {FileInterceptor} from '@nestjs/platform-express';
 import {diskStorage} from 'multer';
-import {Image} from '../../src/app/core/model/image.model';
-import * as fs from 'fs';
 import {ImagesService} from './images.service';
+import {Image} from './image.interface';
+import {ImageDto} from './image.dto';
+import {existsSync, mkdirSync} from 'fs';
+
+const INIT_FILE_NAME = 'initial.jpg';
 
 @Controller('api/images')
 export class ImagesController {
@@ -13,34 +16,31 @@ export class ImagesController {
   ){}
 
 
-  /**
-   * Géneration du fichier pour impression
-   * @param file fichier à transformer
-   * TODO : remplacer generer par transformer
-   */
-  @Post()
-  @UseInterceptors(FileInterceptor('file'))
-  uploadImage(@UploadedFile() file): string {
-    console.log(file);
-    return 'ok';
-  }
-
   @Post('/test')
   @UseInterceptors(FileInterceptor('file',
     {
       storage: diskStorage({
-        destination: './avatars',
+        // Destination storage path details
+        destination: (req: any, file: any, cb: any) => {
+          const uploadPath = './avatars/' + req.query.id;
+          // Create folder if doesn't exist
+          if (!existsSync(uploadPath)) {
+            mkdirSync(uploadPath);
+          }
+          cb(null, uploadPath);
+        },
         filename: (req, file, cb) => {
-          return cb(null, `${file.originalname}`);
+          return cb(null, INIT_FILE_NAME);
         }
       })
     }
     )
   )
-  genererFichierPourImpression(@UploadedFile() file): string {
-    console.log(file);
-    this.imagesService.rabbitEvent();
-    return null;
+  async genererFichierPourImpression(@Param('id') id: string, @UploadedFile() file): Promise<void> {
+    const imageDto = new ImageDto();
+    imageDto._id = id;
+    imageDto.photoInitiale = file;
+    return this.imagesService.rabbitEvent(imageDto);
   }
 
   /**
@@ -63,5 +63,19 @@ export class ImagesController {
   imprimerImage(@UploadedFile() file): string {
     console.log(file);
     return null;
+  }
+
+
+  /**
+   * Fonction d'initialisation d'une nouvelle image
+   */
+  @Get('/initialiser')
+  async initialiserWorkflow() : Promise<Image>{
+    return this.imagesService.initialiserWorkflow();
+  }
+
+  @Put('/pseudo')
+  async miseAjoutPseudo(@Body() image: ImageDto ) : Promise<Image>{
+    return this.imagesService.editImage(image._id, image);
   }
 }

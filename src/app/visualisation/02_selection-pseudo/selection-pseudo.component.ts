@@ -1,6 +1,8 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Image} from '../../core/model/image.model';
+import {ImagesService} from '../../core/service/images.service';
+import {MatStepper} from '@angular/material/stepper';
 
 @Component({
   selector: 'app-selection-pseudo',
@@ -10,8 +12,10 @@ export class SelectionPseudoComponent implements OnInit {
 
   public form: FormGroup;
   @Input() public image: Image;
+  @Input() stepper: MatStepper;
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder,
+              private imagesService: ImagesService) {
     this.form = this.formBuilder.group({
       pseudoCtrl: ['', Validators.required]
     });
@@ -21,6 +25,13 @@ export class SelectionPseudoComponent implements OnInit {
     this.form.get('pseudoCtrl').valueChanges
     .subscribe(val => {
       this.image.pseudo = val;
+    });
+  }
+
+  validerPseudo(){
+    this.imagesService.miseAjourPseudo(this.image).subscribe(value => {
+      console.log(value);
+      this.stepper.next();
     });
   }
 }

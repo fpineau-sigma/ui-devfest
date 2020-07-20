@@ -19,8 +19,8 @@ export class ImpressionPhotoComponent implements OnInit {
   }
 
   imprimer(): void{
-    this.imagesService.impressionImage(this.image).subscribe(value => {
+    /*this.imagesService.impressionImage(this.image).subscribe(value => {
       console.log(value);
-    });
+    });*/
   }
 }

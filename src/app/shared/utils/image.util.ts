@@ -31,9 +31,9 @@ export const dataURItoBlob = (dataURI : string) : Blob => {
 }
 
 // Transforme un imageDto en fichier
-export const imageToFile = (image: Image): File => {
-  const imageName = image.pseudo + '.jpeg';
+export const imageToFile = (imageData: string, pseudo: string): File => {
+  const imageName = pseudo + '.jpeg';
   // call method that creates a blob from dataUri
-  const imageBlob = dataURItoBlob(image.imageData);
+  const imageBlob = dataURItoBlob(imageData);
   return new File([imageBlob], imageName, { type: 'image/jpeg' });
 }
