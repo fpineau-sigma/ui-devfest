@@ -5,6 +5,8 @@ import {ImagesService} from './images.service';
 import {Image} from './image.interface';
 import {ImageDto} from './image.dto';
 import {existsSync, mkdirSync} from 'fs';
+import {ProcessService} from '../process/process.service';
+import {processEnum} from '../process/process.enum';
 
 const INIT_FILE_NAME = 'initial.jpg';
 
@@ -12,7 +14,8 @@ const INIT_FILE_NAME = 'initial.jpg';
 export class ImagesController {
 
   constructor(
-    private readonly  imagesService : ImagesService
+    private readonly  imagesService : ImagesService,
+    private readonly  processService : ProcessService
   ){}
 
 
@@ -71,7 +74,9 @@ export class ImagesController {
    */
   @Get('/initialiser')
   async initialiserWorkflow() : Promise<Image>{
-    return this.imagesService.initialiserWorkflow();
+    const image = this.imagesService.initialiserWorkflow();
+    this.processService.execCommand(processEnum.TEST);
+    return image;
   }
 
   @Put('/pseudo')

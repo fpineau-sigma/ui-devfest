@@ -3,11 +3,12 @@ import { ImagesController } from './images.controller';
 import { ImagesService } from './images.service';
 import {DatabaseModule} from '../database/database.module';
 import {imagesProviders} from './images.provider';
+import {ProcessService} from '../process/process.service';
 
 @Module({
   imports: [DatabaseModule],
   controllers: [ImagesController],
-  providers: [ImagesService,
+  providers: [ImagesService, ProcessService,
   ...imagesProviders]
 })
 export class ImagesModule {}
