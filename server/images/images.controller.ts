@@ -2,7 +2,7 @@ import {Body, Controller, Get, Param, Post, Put, Res, UploadedFile, UseIntercept
 import {FileInterceptor} from '@nestjs/platform-express';
 import {diskStorage} from 'multer';
 import {ImagesService} from './images.service';
-import {Image} from './image.interface';
+import {IImage} from './image.interface';
 import {ImageDto} from './image.dto';
 import {existsSync, mkdirSync} from 'fs';
 import {ProcessService} from '../process/process.service';
@@ -73,14 +73,14 @@ export class ImagesController {
    * Fonction d'initialisation d'une nouvelle image
    */
   @Get('/initialiser')
-  async initialiserWorkflow() : Promise<Image>{
+  async initialiserWorkflow() : Promise<IImage>{
     const image = this.imagesService.initialiserWorkflow();
     this.processService.execCommand(processEnum.TEST);
     return image;
   }
 
   @Put('/pseudo')
-  async miseAjoutPseudo(@Body() image: ImageDto ) : Promise<Image>{
+  async miseAjoutPseudo(@Body() image: ImageDto ) : Promise<IImage>{
     return this.imagesService.editImage(image._id, image);
   }
 }

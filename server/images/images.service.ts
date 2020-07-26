@@ -2,16 +2,16 @@ import {Inject, Injectable} from '@nestjs/common';
 import {TRANSPORT_EVENT_BUS_SERVICE} from 'nestjs-transport-eventbus';
 import {RabbitEvent} from '../events/rabbit.event';
 import {IEventBus} from '@nestjs/cqrs';
-import {Model} from 'mongoose';
-import {Image} from './image.interface';
+import * as mongoose from 'mongoose';
+import {IImage} from './image.interface';
 import {ImageDto} from './image.dto';
+import { ImageSchema, imageModel } from 'server/schemas/image.schema';
 
 @Injectable()
 export class ImagesService {
+  
   constructor(
     @Inject(TRANSPORT_EVENT_BUS_SERVICE) private readonly eventBus: IEventBus,
-    @Inject('IMAGE_MODEL')
-    private imageModel: Model<Image>
   ) {
   }
 
@@ -20,17 +20,22 @@ export class ImagesService {
    * @param imageId id de l'image à mettre à jour
    * @param createImageDTO Nouveau contenu des données
    */
-   async editImage(imageId, createImageDTO: ImageDto): Promise<Image> {
-    return this.imageModel
+   async editImage(imageId, createImageDTO: ImageDto): Promise<IImage> {
+    delete createImageDTO._id;
+    return imageModel
     .findByIdAndUpdate(imageId, createImageDTO, { new: true });
   }
 
   /**
    * Initialisation d'une nouvelle image en base
    */
-  async initialiserWorkflow(): Promise<Image> {
-    const createdImage = new this.imageModel();
-    return createdImage.save();
+  async initialiserWorkflow(): Promise<IImage> {
+    
+    const image = new imageModel({
+      pseudo : "",
+      imageSelectionnee  : ""
+    });
+    return await image.save();
   }
 
   /**

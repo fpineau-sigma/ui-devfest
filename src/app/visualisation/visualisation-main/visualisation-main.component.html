@@ -5,7 +5,7 @@
   </mat-step>
   <mat-step [stepControl]="stepPseudo">
     <ng-template matStepLabel>Entrez votre pseudo</ng-template>
-    <app-selection-pseudo [image]="image"></app-selection-pseudo>
+    <app-selection-pseudo [image]="image" [stepper]="stepper"></app-selection-pseudo>
   </mat-step>
   <mat-step #genererPhotos>
     <ng-template matStepLabel>Generation des photos</ng-template>

@@ -8,8 +8,8 @@ export class RabbitPublisher {
   @Client({
     transport: Transport.RMQ,
     options: {
-      urls: ['amqp://admin:admin@rabbitmq:5672'],
-      queue: 'event_service_queue',
+      urls: ['amqp://admin:admin@localhost:5672'],
+      queue: 'impression-robots',
       queueOptions: {
         durable: true,
       },

@@ -1,4 +1,4 @@
 export enum processEnum {
-  TEST = 'chdir'
+  TEST = 'pwd'
 
 }
